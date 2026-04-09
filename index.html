@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mia Meow — AI Workflows for Creators</title>
+  <meta name="description" content="AI educator teaching practical AI workflows for creators. 21K+ YouTube subscribers. Join the community, watch the latest, sign up for the newsletter.">
+  <link rel="canonical" href="https://miameow.ai/links">
+
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Mia Meow — AI Workflows for Creators">
+  <meta property="og:description" content="AI educator teaching practical AI workflows for creators. 21K+ YouTube subscribers.">
+  <meta property="og:url"         content="https://miameow.ai/links">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="theme-color"        content="#f8f6f3">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mia Meow",
+    "description": "AI educator teaching practical AI workflows for creators",
+    "url": "https://miameow.ai",
+    "sameAs": [
+      "https://www.youtube.com/@miameowai",
+      "https://www.instagram.com/miameowai/",
+      "https://www.tiktok.com/@miameowai"
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-page:   #ede9e2;
+      --bg-card:   #ffffff;
+      --bg-subtle: #f5f2ee;
+      --purple:    #7b54b3;
+      --purple-lt: #ede6f8;
+      --teal:      #00c4cc;
+      --teal-lt:   #e0f9fa;
+      --text:      #1c1628;
+      --text-mid:  #4a4460;
+      --muted:     #9089a8;
+      --border:    rgba(28,22,40,0.08);
+      --border-md: rgba(28,22,40,0.13);
+      --r-sm: 10px;
+      --r-md: 16px;
+      --r-lg: 20px;
+    }
+
+    html, body {
+      min-height: 100vh;
+      background: var(--bg-page);
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Subtle page background gradient */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 80% 5%,  rgba(123,84,179,0.08) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 35% at 10% 90%, rgba(0,196,204,0.06) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── CARD WRAPPER ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0;
+    }
+
+    .card {
+      position: relative;
+      background: var(--bg-card);
+      width: 100%;
+      max-width: 460px;
+      min-height: 100vh;
+      padding: 52px 22px 72px;
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.04),
+        0 4px 16px rgba(28,22,40,0.07),
+        0 16px 48px rgba(28,22,40,0.09);
+    }
+
+    @media (min-width: 520px) {
+      .page  { padding: 48px 16px; align-items: flex-start; }
+      .card  { min-height: auto; border-radius: 28px; }
+    }
+
+    /* ── SHARE BUTTON ── */
+    .share-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--bg-subtle);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      z-index: 10;
+    }
+    .share-btn:hover { background: var(--purple-lt); border-color: var(--purple); transform: scale(1.08); }
+    .share-btn:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; }
+    .share-btn svg { width: 16px; height: 16px; stroke: var(--text-mid); }
+    .share-btn:hover svg { stroke: var(--purple); }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--text);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 100px;
+      opacity: 0;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 999;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ── PROFILE ── */
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 36px;
+      animation: rise 0.55s cubic-bezier(.22,1,.36,1) both;
+    }
+    .avatar-wrap {
+      position: relative;
+      width: 88px; height: 88px;
+      margin-bottom: 14px;
+    }
+    .avatar-ring {
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--teal));
+      opacity: 0.55;
+    }
+    .avatar-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--purple-lt);
+      border: 3px solid #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .avatar-inner img { width: 100%; height: 100%; object-fit: cover; }
+    .avatar-fallback {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800; font-size: 26px;
+      color: var(--purple);
+    }
+    .profile-name {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800; font-size: 25px;
+      letter-spacing: -0.025em;
+      margin-bottom: 6px;
+    }
+    .profile-stats {
+      display: flex; gap: 10px; align-items: center;
+      margin-bottom: 8px;
+    }
+    .stat {
+      font-size: 12px; font-weight: 500;
+      color: var(--muted);
+      background: var(--bg-subtle);
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+    .stat-link {
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .stat-link:hover { background: var(--purple-lt); color: var(--purple); }
+    .stat-link:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; }
+    .profile-bio {
+      font-size: 14px; font-weight: 300;
+      color: var(--text-mid);
+      max-width: 260px;
+      line-height: 1.65;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .section-label {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .section-line { flex: 1; height: 1px; background: var(--border); }
+
+    /* ── SKELETON ── */
+    .skel {
+      background: linear-gradient(90deg, #ece8e1 25%, #f5f1ec 50%, #ece8e1 75%);
+      background-size: 300% 100%;
+      animation: skel 1.5s ease-in-out infinite;
+    }
+    @keyframes skel {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* ── FEATURED VIDEO ── */
+    .video-section {
+      margin-bottom: 26px;
+      animation: rise 0.55s cubic-bezier(.22,1,.36,1) 0.08s both;
+    }
+    .feat-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(28,22,40,0.06), 0 4px 16px rgba(28,22,40,0.05);
+      transition: transform 0.28s cubic-bezier(.22,1,.36,1), box-shadow 0.28s ease, border-color 0.2s;
+      margin-bottom: 10px;
+    }
+    .feat-card:hover { transform: translateY(-3px); box-shadow: 0 4px 16px rgba(28,22,40,0.1), 0 16px 40px rgba(28,22,40,0.09); border-color: var(--border-md); }
+    .feat-card:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; }
+
+    .feat-thumb {
+      position: relative;
+      width: 100%; aspect-ratio: 16/9;
+      background: var(--bg-subtle);
+      overflow: hidden;
+    }
+    .feat-thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block; opacity: 0;
+      transition: opacity 0.35s ease, transform 0.35s cubic-bezier(.22,1,.36,1);
+    }
+    .feat-thumb.loaded img { opacity: 1; }
+    .feat-card:hover .feat-thumb img { transform: scale(1.025); }
+    .feat-thumb .skel { position: absolute; inset: 0; transition: opacity 0.3s; }
+    .feat-thumb.loaded .skel { opacity: 0; pointer-events: none; }
+
+    .play-ring {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.92);
+      box-shadow: 0 2px 14px rgba(28,22,40,0.18);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .feat-card:hover .play-ring { transform: translate(-50%,-50%) scale(1.1); box-shadow: 0 4px 20px rgba(123,84,179,0.3); }
+    .play-ring svg { width: 20px; height: 20px; fill: var(--purple); margin-left: 3px; }
+
+    .new-chip {
+      position: absolute; top: 11px; left: 11px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--teal); color: #fff;
+      padding: 3px 9px; border-radius: 6px;
+    }
+
+    .feat-info { padding: 13px 15px 15px; }
+    .feat-eyebrow {
+      font-size: 10.5px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--purple); margin-bottom: 4px;
+    }
+    .feat-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 16px; font-weight: 700; line-height: 1.3;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+      min-height: 42px;
+    }
+    .feat-title.skel { color: transparent; border-radius: 6px; }
+
+    /* ── MINI VIDEOS ── */
+    .mini-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .mini-card {
+      display: flex; align-items: center; gap: 11px;
+      padding: 9px 11px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      text-decoration: none; color: inherit; cursor: pointer;
+      box-shadow: 0 1px 3px rgba(28,22,40,0.05);
+      transition: transform 0.22s cubic-bezier(.22,1,.36,1), box-shadow 0.22s ease, border-color 0.2s;
+    }
+    .mini-card:hover { transform: translateX(3px); box-shadow: 0 2px 10px rgba(28,22,40,0.09); border-color: var(--border-md); }
+    .mini-card:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; }
+
+    .mini-thumb {
+      position: relative;
+      width: 90px; min-width: 90px;
+      aspect-ratio: 16/9;
+      border-radius: 7px; overflow: hidden;
+      background: var(--bg-subtle); flex-shrink: 0;
+    }
+    .mini-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.3s; }
+    .mini-thumb.loaded img { opacity: 1; }
+    .mini-thumb .skel { position: absolute; inset: 0; border-radius: 7px; transition: opacity 0.3s; }
+    .mini-thumb.loaded .skel { opacity: 0; pointer-events: none; }
+
+    .mini-play-dot {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 24px; height: 24px; border-radius: 50%;
+      background: rgba(255,255,255,0.88);
+      box-shadow: 0 1px 5px rgba(0,0,0,0.14);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .mini-play-dot svg { width: 9px; height: 9px; fill: var(--purple); margin-left: 1px; }
+
+    .mini-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 12.5px; font-weight: 600; line-height: 1.35;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+      flex: 1; min-width: 0;
+    }
+    .mini-title.skel { height: 32px; border-radius: 4px; color: transparent; }
+
+    .mini-arrow { color: var(--muted); flex-shrink: 0; transition: transform 0.2s, color 0.2s; }
+    .mini-card:hover .mini-arrow { transform: translateX(3px); color: var(--purple); }
+
+    /* ── LINK CARDS ── */
+    .links-section {
+      margin-bottom: 28px;
+      animation: rise 0.55s cubic-bezier(.22,1,.36,1) 0.16s both;
+    }
+    .link-stack { display: flex; flex-direction: column; gap: 9px; }
+
+    .link-card {
+      display: flex; align-items: center; gap: 13px;
+      padding: 13px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      text-decoration: none; color: var(--text); cursor: pointer;
+      box-shadow: 0 1px 4px rgba(28,22,40,0.05);
+      position: relative; overflow: hidden;
+      transition: transform 0.22s cubic-bezier(.22,1,.36,1), box-shadow 0.22s ease, border-color 0.2s;
+    }
+    .link-card::before {
+      content: '';
+      position: absolute; left: 0; top: 15%; bottom: 15%;
+      width: 3px; border-radius: 0 3px 3px 0;
+      background: var(--accent, var(--purple));
+      opacity: 0.45;
+      transition: opacity 0.2s, top 0.25s, bottom 0.25s;
+    }
+    .link-card:hover { transform: translateX(3px) translateY(-1px); box-shadow: 0 2px 10px rgba(28,22,40,0.09); border-color: var(--border-md); }
+    .link-card:hover::before { opacity: 1; top: 8%; bottom: 8%; }
+    .link-card:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; }
+
+    .link-icon {
+      width: 42px; height: 42px; min-width: 42px; border-radius: 11px;
+      background: var(--bg-subtle);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .link-icon svg { width: 20px; height: 20px; }
+    .link-body { flex: 1; min-width: 0; }
+    .link-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700; font-size: 14.5px; line-height: 1.2;
+      margin-bottom: 1px;
+    }
+    .link-sub { font-size: 12px; color: var(--muted); font-weight: 300; }
+    .link-arrow { color: var(--muted); flex-shrink: 0; transition: transform 0.2s, color 0.2s; }
+    .link-card:hover .link-arrow { transform: translateX(3px); color: var(--text-mid); }
+
+    /* ── SOCIAL ICONS ROW ── */
+    .social-section {
+      animation: rise 0.55s cubic-bezier(.22,1,.36,1) 0.22s both;
+      margin-bottom: 36px;
+    }
+    .social-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .social-btn {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .social-btn:hover { transform: translateY(-3px); box-shadow: 0 4px 16px rgba(28,22,40,0.12); border-color: var(--border-md); background: #fff; }
+    .social-btn:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; }
+    .social-btn svg { width: 20px; height: 20px; }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      animation: rise 0.55s cubic-bezier(.22,1,.36,1) 0.28s both;
+    }
+    .footer p { font-size: 11px; color: var(--muted); opacity: 0.5; }
+
+    /* ── ANIMATION ── */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 375px) {
+      .card { padding: 48px 16px 60px; }
+      .mini-thumb { width: 76px; min-width: 76px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <main class="card" role="main">
+
+    <!-- Share button -->
+    <button class="share-btn" onclick="shareProfile()" aria-label="Share this page">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+      </svg>
+    </button>
+
+    <!-- Profile -->
+    <div class="profile">
+      <div class="avatar-wrap">
+        <div class="avatar-ring" aria-hidden="true"></div>
+        <div class="avatar-inner">
+          <img id="avatar-img" src="./avatar.jpg" alt="Mia Meow"
+               onerror="this.style.display='none';document.getElementById('avatar-fb').style.display='flex'">
+          <span id="avatar-fb" class="avatar-fallback" style="display:none" aria-hidden="true">MM</span>
+        </div>
+      </div>
+      <h1 class="profile-name">Mia Meow</h1>
+      <div class="profile-stats">
+        <a class="stat stat-link" href="https://www.youtube.com/@miameowai" target="_blank" rel="noopener noreferrer" aria-label="View YouTube channel">
+          <span id="sub-count">21K+</span> subscribers
+        </a>
+      </div>
+      <p class="profile-bio">AI workflows for creators.</p>
+    </div>
+
+    <!-- Latest Videos -->
+    <section class="video-section" aria-label="Latest YouTube videos">
+      <div class="section-head">
+        <span class="section-label">Latest videos</span>
+        <div class="section-line" aria-hidden="true"></div>
+      </div>
+
+      <!-- Video 0: featured -->
+      <a id="vid-0" class="feat-card"
+         href="https://www.youtube.com/@miameowai"
+         target="_blank" rel="noopener noreferrer">
+        <div id="thumb-0" class="feat-thumb">
+          <div class="skel" aria-hidden="true"></div>
+          <img id="img-0" src="" alt="">
+          <div class="play-ring" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <span class="new-chip" aria-hidden="true">Latest</span>
+        </div>
+        <div class="feat-info">
+          <p class="feat-eyebrow">New on YouTube</p>
+          <p id="title-0" class="feat-title skel" aria-label="Loading">&#8203;</p>
+        </div>
+      </a>
+
+      <!-- Videos 1-4: mini -->
+      <div class="mini-list" role="list">
+
+        <a id="vid-1" class="mini-card" href="https://www.youtube.com/@miameowai" target="_blank" rel="noopener noreferrer" role="listitem">
+          <div id="thumb-1" class="mini-thumb">
+            <div class="skel" aria-hidden="true"></div>
+            <img id="img-1" src="" alt="">
+            <div class="mini-play-dot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <p id="title-1" class="mini-title skel">&#8203;</p>
+          <svg class="mini-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+
+        <a id="vid-2" class="mini-card" href="https://www.youtube.com/@miameowai" target="_blank" rel="noopener noreferrer" role="listitem">
+          <div id="thumb-2" class="mini-thumb">
+            <div class="skel" aria-hidden="true"></div>
+            <img id="img-2" src="" alt="">
+            <div class="mini-play-dot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <p id="title-2" class="mini-title skel">&#8203;</p>
+          <svg class="mini-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+
+        <a id="vid-3" class="mini-card" href="https://www.youtube.com/@miameowai" target="_blank" rel="noopener noreferrer" role="listitem">
+          <div id="thumb-3" class="mini-thumb">
+            <div class="skel" aria-hidden="true"></div>
+            <img id="img-3" src="" alt="">
+            <div class="mini-play-dot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <p id="title-3" class="mini-title skel">&#8203;</p>
+          <svg class="mini-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+
+        <a id="vid-4" class="mini-card" href="https://www.youtube.com/@miameowai" target="_blank" rel="noopener noreferrer" role="listitem">
+          <div id="thumb-4" class="mini-thumb">
+            <div class="skel" aria-hidden="true"></div>
+            <img id="img-4" src="" alt="">
+            <div class="mini-play-dot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <p id="title-4" class="mini-title skel">&#8203;</p>
+          <svg class="mini-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Link cards: community + newsletter only -->
+    <section class="links-section" aria-label="Join and subscribe">
+      <div class="section-head">
+        <span class="section-label">Find me here</span>
+        <div class="section-line" aria-hidden="true"></div>
+      </div>
+      <div class="link-stack">
+
+        <a class="link-card" style="--accent:#7b54b3"
+           href="https://www.skool.com/ai-creator-labs"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Join AI Creator Labs community on Skool">
+          <div class="link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#7b54b3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div class="link-body">
+            <p class="link-title">AI Creator Labs</p>
+            <p class="link-sub">700+ members on Skool</p>
+          </div>
+          <svg class="link-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a class="link-card" style="--accent:#00c4cc"
+           href="https://mia-meow.kit.com/0988b3b4b8"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Subscribe to Mia Meow's weekly newsletter">
+          <div class="link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00c4cc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div class="link-body">
+            <p class="link-title">Weekly Newsletter</p>
+            <p class="link-sub">AI workflows in your inbox</p>
+          </div>
+          <svg class="link-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Social icons -->
+    <section class="social-section" aria-label="Social media">
+      <div class="section-head">
+        <span class="section-label">Follow along</span>
+        <div class="section-line" aria-hidden="true"></div>
+      </div>
+      <div class="social-row">
+
+        <a class="social-btn" href="https://www.youtube.com/@miameowai" target="_blank" rel="noopener noreferrer" aria-label="YouTube @miameowai">
+          <svg viewBox="0 0 24 24" fill="#ff4e45">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </a>
+
+        <a class="social-btn" href="https://www.instagram.com/miameowai/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @miameowai">
+          <svg viewBox="0 0 24 24" fill="none" stroke="url(#ig-grad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="ig-grad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#f09433"/>
+                <stop offset="25%" stop-color="#e6683c"/>
+                <stop offset="50%" stop-color="#dc2743"/>
+                <stop offset="75%" stop-color="#cc2366"/>
+                <stop offset="100%" stop-color="#bc1888"/>
+              </linearGradient>
+            </defs>
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2.5"/>
+          </svg>
+        </a>
+
+        <a class="social-btn" href="https://www.tiktok.com/@miameowai" target="_blank" rel="noopener noreferrer" aria-label="TikTok @miameowai">
+          <svg viewBox="0 0 24 24" fill="#1a1a1a">
+            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+          </svg>
+        </a>
+
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Mia Meow</p>
+    </footer>
+
+  </main>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  // Dynamic year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Share
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2400);
+  }
+
+  async function shareProfile() {
+    const url  = window.location.href;
+    const data = { title: 'Mia Meow — AI Workflows for Creators', url };
+    if (navigator.share && navigator.canShare?.(data)) {
+      try { await navigator.share(data); return; } catch {}
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      showToast('Link copied to clipboard');
+    } catch {
+      showToast(url);
+    }
+  }
+
+  // Load a thumbnail — uses API-provided URL first, then falls back to ytimg
+  function loadThumb(imgEl, wrapEl, videoId, thumbUrl) {
+    if (!videoId) return;
+    const fallbacks = [
+      thumbUrl,
+      `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`,
+      `https://i.ytimg.com/vi/${videoId}/sddefault.jpg`,
+      `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+    ].filter(Boolean);
+
+    let i = 0;
+    const next = () => {
+      if (i >= fallbacks.length) return;
+      const t   = new Image();
+      t.onload  = () => { imgEl.src = t.src; imgEl.style.opacity = '1'; wrapEl.classList.add('loaded'); };
+      t.onerror = () => { i++; next(); };
+      t.src     = fallbacks[i++];
+    };
+    next();
+  }
+
+  async function loadVideos() {
+    let videos = [], subscribers = null;
+
+    try {
+      const ac  = new AbortController();
+      const tid = setTimeout(() => ac.abort(), 8000);
+      const r   = await fetch('/api/latest-video', { signal: ac.signal });
+      clearTimeout(tid);
+      if (r.ok) {
+        const d  = await r.json();
+        videos      = d.videos      || [];
+        subscribers = d.subscribers || null;
+      }
+    } catch {}
+
+    if (subscribers) {
+      const el = document.getElementById('sub-count');
+      if (el) el.textContent = subscribers;
+    }
+
+    if (!videos.length) {
+      for (let i = 0; i < 5; i++) {
+        const t = document.getElementById(`title-${i}`);
+        const w = document.getElementById(`thumb-${i}`);
+        if (t) { t.textContent = 'Watch on YouTube'; t.classList.remove('skel'); }
+        if (w) w.classList.add('loaded');
+      }
+      return;
+    }
+
+    videos.forEach((v, i) => {
+      const card  = document.getElementById(`vid-${i}`);
+      const wrap  = document.getElementById(`thumb-${i}`);
+      const img   = document.getElementById(`img-${i}`);
+      const title = document.getElementById(`title-${i}`);
+      if (!card) return;
+      if (v.url)   card.href = v.url;
+      if (v.title) card.setAttribute('aria-label', `Watch: ${v.title}`);
+      if (img)     { img.alt = v.title || ''; loadThumb(img, wrap, v.videoId, v.thumbnail); }
+      if (title)   { title.textContent = v.title || 'Watch on YouTube'; title.classList.remove('skel'); }
+    });
+  }
+
+  loadVideos();
+</script>
+
+</body>
+</html>
