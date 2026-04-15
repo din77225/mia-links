@@ -5,6 +5,7 @@ const CHANNEL_ID  = 'UCbeTqbTXZgokTvLN2KDK3uw';
 const PLAYLIST_ID = 'UU' + CHANNEL_ID.slice(2);
 
 const COLLAB_IDS = [
+  'Q7AShky_2Do',
   'EC6isPbc6C8','HMWFvxeNMVo','oQLrOhuYgy0',
   'KjySPFm8TdA','g7Kn_wShaK4','ZyOKO6t036s',
   'mv47PjYIExo','i3obhZK2MYQ',
