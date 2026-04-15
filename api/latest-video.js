@@ -4,12 +4,9 @@ const https = require('https');
 const CHANNEL_ID  = 'UCbeTqbTXZgokTvLN2KDK3uw';
 const PLAYLIST_ID = 'UU' + CHANNEL_ID.slice(2);
 
-const COLLAB_IDS = [
-  'Q7AShky_2Do',
-  'EC6isPbc6C8','HMWFvxeNMVo','oQLrOhuYgy0',
-  'KjySPFm8TdA','g7Kn_wShaK4','ZyOKO6t036s',
-  'mv47PjYIExo','i3obhZK2MYQ',
-];
+// Collab IDs are fetched live from collabs.json in the meow-web repo.
+// To add a new collab: edit meow-web/src/data/collabs.json and push — both sites update.
+const COLLABS_JSON_URL = 'https://raw.githubusercontent.com/din77225/meow-web/main/src/data/collabs.json';
 
 function fetchJson(url) {
   return new Promise((resolve, reject) => {
@@ -54,16 +51,20 @@ module.exports = async function handler(req, res) {
   if (!key) { res.status(500).json({ error: 'Missing YOUTUBE_API_KEY' }); return; }
 
   try {
-    const playlistRes = await fetchJson(
-      `https://www.googleapis.com/youtube/v3/playlistItems` +
-      `?part=snippet&playlistId=${PLAYLIST_ID}&maxResults=15&key=${key}`
-    );
+    const [playlistRes, collabsJson] = await Promise.all([
+      fetchJson(
+        `https://www.googleapis.com/youtube/v3/playlistItems` +
+        `?part=snippet&playlistId=${PLAYLIST_ID}&maxResults=15&key=${key}`
+      ),
+      fetchJson(COLLABS_JSON_URL),
+    ]);
     const playlistIds = (playlistRes.items || []).map(i => i.snippet.resourceId.videoId).join(',');
+    const collabIds   = (Array.isArray(collabsJson) ? collabsJson : []).map(v => v.id).join(',');
 
     const [videoRes, channelRes, collabRes] = await Promise.all([
       fetchJson(`https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id=${playlistIds}&key=${key}`),
       fetchJson(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${key}`),
-      fetchJson(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${COLLAB_IDS.join(',')}&key=${key}`),
+      collabIds ? fetchJson(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${collabIds}&key=${key}`) : Promise.resolve({ items: [] }),
     ]);
 
     const channelVideos = (videoRes.items || [])
