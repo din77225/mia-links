@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Mia Meow — AI Workflows for Creators</title>
-  <meta name="description" content="AI educator teaching practical AI workflows for creators. 21K+ YouTube subscribers. Join the community, watch the latest, sign up for the newsletter.">
+  <meta name="description" content="AI educator teaching practical AI workflows for creators. 22K+ YouTube subscribers. Join the community, watch the latest, sign up for the newsletter.">
   <link rel="canonical" href="https://miameow.ai/links">
 
   <meta property="og:type"        content="website">
   <meta property="og:title"       content="Mia Meow — AI Workflows for Creators">
-  <meta property="og:description" content="AI educator teaching practical AI workflows for creators. 21K+ YouTube subscribers.">
+  <meta property="og:description" content="AI educator teaching practical AI workflows for creators. 22K+ YouTube subscribers.">
   <meta property="og:url"         content="https://miameow.ai/links">
   <meta name="twitter:card"       content="summary_large_image">
   <meta name="theme-color"        content="#f8f6f3">
@@ -243,6 +243,217 @@
     @keyframes skel {
       0%   { background-position: 200% 0; }
       100% { background-position: -200% 0; }
+    }
+
+    /* ── FEATURED PRODUCT (Playbook) ── */
+    .product-section {
+      margin-bottom: 28px;
+      animation: rise 0.55s cubic-bezier(.22,1,.36,1) 0.05s both;
+    }
+    .product-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      background: #1a1625;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow:
+        0 2px 8px rgba(28,22,40,0.1),
+        0 14px 36px rgba(28,22,40,0.18);
+      transition: transform 0.3s cubic-bezier(.22,1,.36,1), box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 4px 14px rgba(28,22,40,0.14),
+        0 22px 48px rgba(123,84,179,0.28);
+    }
+    .product-card:focus-visible { outline: 3px solid #f4d00a; outline-offset: 3px; }
+
+    /* Ghost background word */
+    .product-card::before {
+      content: 'seedance';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 90px;
+      letter-spacing: -0.05em;
+      color: rgba(255,255,255,0.035);
+      pointer-events: none;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .product-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: #0f0d15;
+      overflow: hidden;
+    }
+    .product-thumb img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.4s cubic-bezier(.22,1,.36,1);
+    }
+    .product-card:hover .product-thumb img { transform: scale(1.03); }
+    /* Gradient fade from image to card body */
+    .product-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(26,22,37,0) 55%,
+        rgba(26,22,37,0.6) 85%,
+        rgba(26,22,37,1) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* NEW badge */
+    .product-new {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: #f4d00a;
+      color: #1a1625;
+      padding: 5px 11px;
+      border-radius: 100px;
+      box-shadow: 0 2px 10px rgba(244,208,10,0.4);
+    }
+
+    /* Pages badge */
+    .product-pages {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 2;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      padding: 5px 11px;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .product-body {
+      position: relative;
+      z-index: 1;
+      padding: 4px 22px 22px;
+      color: #fff;
+    }
+
+    .product-eyebrow {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #f4d00a;
+      margin-bottom: 10px;
+    }
+
+    .product-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      margin-bottom: 10px;
+    }
+    .product-title .accent { color: #f4d00a; }
+
+    .product-desc {
+      font-size: 13.5px;
+      font-weight: 300;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 14px;
+    }
+
+    .product-bullets {
+      list-style: none;
+      margin: 0 0 18px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .product-bullets li {
+      display: flex;
+      gap: 9px;
+      font-size: 12.5px;
+      font-weight: 400;
+      line-height: 1.45;
+      color: rgba(255,255,255,0.82);
+    }
+    .product-bullets li::before {
+      content: '→';
+      color: #f4d00a;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .product-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #f4d00a;
+      color: #1a1625;
+      padding: 13px 22px;
+      border-radius: 100px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .product-card:hover .product-cta {
+      background: #ffd93d;
+      transform: translateX(2px);
+    }
+    .product-cta svg { width: 14px; height: 14px; stroke: #1a1625; stroke-width: 2.5; }
+
+    .product-discount {
+      display: block;
+      margin-top: 12px;
+      font-size: 11.5px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+    }
+    .product-discount code {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: #f4d00a;
+      background: rgba(244,208,10,0.1);
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin: 0 2px;
+    }
+
+    @media (max-width: 375px) {
+      .product-title  { font-size: 20px; }
+      .product-body   { padding: 4px 18px 20px; }
     }
 
     /* ── FEATURED VIDEO ── */
@@ -480,11 +691,49 @@
       <h1 class="profile-name">Mia Meow</h1>
       <div class="profile-stats">
         <a class="stat stat-link" href="https://www.youtube.com/@miameowai" target="_blank" rel="noopener noreferrer" aria-label="View YouTube channel">
-          <span id="sub-count">21K+</span> subscribers
+          <span id="sub-count">22K+</span> subscribers
         </a>
       </div>
       <p class="profile-bio">AI workflows for creators.</p>
     </div>
+
+    <!-- Featured Product: Seedance Playbook -->
+    <section class="product-section" aria-label="Seedance 2.0 Prompt Playbook">
+      <a class="product-card"
+         href="https://linkly.link/2hkMs"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Get the Seedance 2.0 Prompt Playbook on Gumroad">
+
+        <div class="product-thumb">
+          <span class="product-new" aria-hidden="true">New drop</span>
+          <img src="./seedance-playbook-cover.png" alt="The Seedance 2.0 Prompt Playbook cover" loading="lazy">
+        </div>
+
+        <div class="product-body">
+          <p class="product-eyebrow">Prompt Playbook</p>
+          <h2 class="product-title">
+            The Seedance 2.0<br>
+            <span class="accent">Prompt Playbook.</span>
+          </h2>
+          <p class="product-desc">
+            The framework I use to control Seedance 2.0. Camera moves, beat-synced music videos, dialogue directing, multi-reference scenes. Built from weeks of testing and the official ByteDance manual.
+          </p>
+          <ul class="product-bullets" aria-label="What's inside">
+            <li>The @Tag system and the golden rule</li>
+            <li>16 camera terms with Chinese and English</li>
+            <li>The audio-locked MV workaround</li>
+            <li>Live Prompt Library with 65+ examples</li>
+          </ul>
+          <span class="product-cta">
+            Get the playbook
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+          <span class="product-discount">
+            Use code <code>EARLY</code> for 35% off at checkout.
+          </span>
+        </div>
+      </a>
+    </section>
 
     <!-- Latest Videos -->
     <section class="video-section" aria-label="Latest YouTube videos">
