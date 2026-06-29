@@ -575,6 +575,19 @@
     .mini-arrow { color: var(--muted); flex-shrink: 0; transition: transform 0.2s, color 0.2s; }
     .mini-card:hover .mini-arrow { transform: translateX(3px); color: var(--purple); }
 
+    /* ── OPENART DIRECTOR BANNER ── */
+    .oa-section { margin-bottom: 26px; }
+    .oa-banner { display:flex; align-items:center; gap:14px; padding:12px; background:linear-gradient(135deg, rgba(155,93,229,0.16), rgba(247,37,133,0.10)); border:1px solid rgba(155,93,229,0.45); border-radius:var(--r-md); text-decoration:none; color:var(--text); cursor:pointer; box-shadow:0 0 22px rgba(155,93,229,0.20); transition:transform 0.22s cubic-bezier(.22,1,.36,1), box-shadow 0.22s ease, border-color 0.2s; }
+    .oa-banner:hover { transform:translateY(-2px); box-shadow:0 6px 28px rgba(155,93,229,0.32); border-color:var(--purple); }
+    .oa-banner:focus-visible { outline:2px solid var(--purple); outline-offset:2px; }
+    .oa-video { width:80px; height:80px; min-width:80px; border-radius:12px; object-fit:cover; background:var(--bg-subtle); border:1px solid var(--border); }
+    .oa-body { flex:1; min-width:0; }
+    .oa-title { font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:16px; line-height:1.2; margin-bottom:3px; }
+    .oa-sub { font-size:12px; color:var(--text-mid); font-weight:300; line-height:1.45; }
+    .oa-code { color:var(--purple); font-weight:600; }
+    .oa-arrow { color:var(--muted); flex-shrink:0; transition:transform 0.2s, color 0.2s; }
+    .oa-banner:hover .oa-arrow { transform:translateX(3px); color:var(--purple); }
+
     /* ── LINK CARDS ── */
     .links-section {
       margin-bottom: 28px;
@@ -735,6 +748,22 @@
       </a>
     </section>
 
+    <!-- OpenArt Director banner -->
+    <section class="oa-section" aria-label="Try OpenArt Director">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);">Latest trick</span>
+        <div style="flex:1;height:1px;background:var(--border);"></div>
+      </div>
+      <a class="oa-banner" href="https://openart.ai/home/?ref=miameow" target="_blank" rel="noopener noreferrer sponsored" aria-label="Try OpenArt Director, 15% off with code MIAMEOW">
+        <video class="oa-video" src="https://cdn.openart.ai/production/2026-06/uploads/8NX6NnDnPc4CuiBCUz81/file_0n3lNRv8_1782186434417.mp4" autoplay muted loop playsinline aria-hidden="true"></video>
+        <div class="oa-body">
+          <p class="oa-title">Try OpenArt Director</p>
+          <p class="oa-sub">Make a whole video just by chatting. <span class="oa-code">15% off with code MIAMEOW</span></p>
+        </div>
+        <svg class="oa-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </section>
+
     <!-- Latest Videos -->
     <section class="video-section" aria-label="Latest YouTube videos">
       <div class="section-head">
@@ -846,7 +875,7 @@
           </div>
           <div class="link-body">
             <p class="link-title">AI Creator Labs</p>
-            <p class="link-sub">700+ members on Skool</p>
+            <p class="link-sub">900+ members on Skool</p>
           </div>
           <svg class="link-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
