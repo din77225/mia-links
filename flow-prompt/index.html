@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omni Flash Motion Graphics Prompt · mia meow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --mm-purple:#7b54b3;--mm-teal:#00c4cc;--mm-yellow:#f4d00a;--mm-bg:#f8f6f3;
+    --ink:#1c1a22;--muted:#6b6675;--line:#e7e2db;--card:#fff;--radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--mm-bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px}
+  header{padding:56px 20px 30px;text-align:center}
+  .kicker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mm-purple);background:rgba(123,84,179,.1);padding:6px 14px;border-radius:999px;margin-bottom:20px}
+  h1{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(30px,6vw,46px);line-height:1.08;letter-spacing:-.01em;margin-bottom:14px}
+  h1 .hl{background:linear-gradient(180deg,transparent 62%,var(--mm-yellow) 62%);padding:0 4px}
+  .sub{font-size:17px;color:var(--muted);max-width:470px;margin:0 auto}
+  .steps{display:flex;flex-direction:column;gap:12px;margin:34px 0 8px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start}
+  .step .n{flex:0 0 30px;height:30px;border-radius:9px;background:var(--mm-teal);color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center;margin-top:1px}
+  .step p{font-size:15px}.step b{font-weight:700}
+  .gen{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;margin:30px 0;box-shadow:0 12px 40px -24px rgba(28,26,34,.4)}
+  .gen h2{font-size:20px;font-weight:800;margin-bottom:4px}
+  .gen .hint{font-size:14px;color:var(--muted);margin-bottom:16px}
+  .toplabel{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .toplabel span{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+  .copy{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 15px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
+  .copy.done{background:var(--mm-teal);color:#fff;border-color:var(--mm-teal)}
+  pre{background:#1c1a22;color:#f4f1ea;border-radius:12px;padding:18px;font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-wrap:break-word;font-family:'SF Mono',ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}
+  .mark{color:var(--mm-yellow);font-weight:700}
+  .note{font-size:13.5px;color:var(--muted);margin-top:12px}
+  .cta{background:linear-gradient(135deg,var(--mm-purple),#5a3a8c);color:#fff;border-radius:var(--radius);padding:36px 28px;text-align:center;margin:34px 0 18px}
+  .cta h3{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:10px}
+  .cta p{opacity:.9;font-size:15px;max-width:400px;margin:0 auto 22px}
+  .skool{display:inline-block;background:var(--mm-yellow);color:var(--ink);font-weight:800;text-decoration:none;padding:15px 30px;border-radius:12px;font-size:16px;transition:.15s}
+  .skool:hover{transform:translateY(-1px)}
+  .socials{display:flex;gap:14px;justify-content:center;margin-top:22px}
+  .socials a{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.14);display:grid;place-items:center;transition:.15s}
+  .socials a:hover{background:rgba(255,255,255,.28);transform:translateY(-1px)}
+  .socials svg{width:21px;height:21px;fill:#fff}
+  .gloss{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;margin:30px 0}
+  .gloss h2{font-size:20px;font-weight:800;margin-bottom:4px}
+  .gloss .hint{font-size:14px;color:var(--muted);margin-bottom:18px}
+  .gloss dl{display:flex;flex-direction:column;gap:15px;margin:0}
+  .gloss dt{font-weight:700;font-size:15px}
+  .gloss dt .y{background:var(--mm-yellow);padding:0 5px;border-radius:3px}
+  .gloss dd{font-size:14.5px;color:var(--muted);margin:3px 0 0}
+  footer{text-align:center;padding:22px 20px 50px;color:var(--muted);font-size:13px}
+  footer b{color:var(--ink);font-weight:700}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="kicker">Free · mia meow</span>
+  <h1>You film a clip.<br><span class="hl">AI turns it into motion graphics.</span></h1>
+  <p class="sub">Grab my full editorial-collage prompt below, drop in your own script, and let Google Omni Flash do the rest.</p>
+</header>
+
+<div class="wrap">
+  <div class="steps">
+    <div class="step"><div class="n">1</div><p><b>Copy the prompt below.</b> Paste it into ChatGPT or Claude and swap <b>PASTE YOUR SCRIPT HERE</b> for the words you say in your clip.</p></div>
+    <div class="step"><div class="n">2</div><p><b>It hands you back one short prompt per clip</b> (Omni Flash caps clips at 10 seconds), with your script built into each.</p></div>
+    <div class="step"><div class="n">3</div><p><b>Generate each clip with Google Omni Flash</b> — you can get it in <a href="https://labs.google/fx/tools/flow" target="_blank" rel="noopener" style="color:var(--mm-purple);font-weight:700">Google Flow</a>, or any tool that runs Omni Flash. Then stitch the clips together in your editor.</p></div>
+  </div>
+
+  <div class="gen">
+    <h2>The prompt</h2>
+    <p class="hint">Copy the whole thing. The only part you change is your script.</p>
+    <div class="toplabel">
+      <span>Copy → paste into ChatGPT or Claude</span>
+      <button class="copy" id="copy">Copy prompt</button>
+    </div>
+    <pre id="prompt"></pre>
+    <p class="note">Tip: keep your clip short and put your exact lines in, so the on-screen text matches what you say. Run it a couple of times and pick the best take.</p>
+    <p class="note">The prompt keeps your face as a real photo on purpose. Want a fully illustrated or cartoon look instead? Just edit the IDENTITY &amp; REALISM section before you generate.</p>
+  </div>
+
+  <div class="gloss">
+    <h2>What the prompt words actually mean</h2>
+    <p class="hint">So you can tweak it with confidence instead of guessing.</p>
+    <dl>
+      <dt><span class="y">12 FPS stop-motion</span></dt>
+      <dd>Plays at 12 frames a second instead of a smooth 24 to 30, so the motion looks choppy and handmade, like real stop-motion. This is what gives it that crafty, non-AI feel. Take it out and it goes smooth and generic.</dd>
+      <dt><span class="y">Editorial paper collage</span></dt>
+      <dd>The whole look is built from torn paper, tape, and magazine cutouts, like a scrapbook or a bold magazine spread. It's the core aesthetic.</dd>
+      <dt><span class="y">Halftone</span></dt>
+      <dd>The tiny dot pattern from old newspaper and comic-book printing. Adds a printed, retro texture instead of a clean digital look.</dd>
+      <dt><span class="y">Kinetic typography</span></dt>
+      <dd>Text that animates. Words fly in, stamp down, and land one at a time in sync with your voice. It's what makes each line hit.</dd>
+      <dt><span class="y">Torn-paper wipe</span></dt>
+      <dd>A transition where a paper rip reveals the next shot, instead of a plain cut or fade.</dd>
+      <dt><span class="y">Crash zoom &amp; whip pan</span></dt>
+      <dd>Fast camera moves. A crash zoom punches in quickly, a whip pan snaps sideways. They keep the energy high so it doesn't feel static.</dd>
+      <dt><span class="y">Electric yellow accent</span></dt>
+      <dd>One bright signature color used for emphasis. Keeping a single accent makes the video feel bold and consistent. Swap it for your own brand color if you like.</dd>
+    </dl>
+  </div>
+
+  <div class="cta">
+    <h3>Want the full workflow?</h3>
+    <p>This is the kind of AI trick I break down every week inside my free community. Come build with us.</p>
+    <a class="skool" href="https://www.skool.com/ai-creator-labs-2150">Join my Skool community</a>
+    <div class="socials">
+      <a href="https://www.youtube.com/@miameowai" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/miameowai" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.1.4.3 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.1-1 .3-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.1-.4-.3-1-.4-2.2-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.1 1-.3 2.2-.4 1.3-.1 1.7-.1 4.9-.1Zm0 1.9c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1Zm0 3.3a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 0 1 0-9.2Zm0 7.6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm5.8-7.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0Z"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <b>mia meow</b> · ai workflows for creative work<br>
+  © 2026 mia meow. All rights reserved.
+</footer>
+
+<script>
+const PROMPT = `Use the master prompt below as a template to create a motion graphics video from a clip I filmed of myself talking to camera. I will generate it with the Google Omni Flash model.
+
+Keep every style section EXACTLY as written: the handcrafted stop-motion paper collage look, the identity and realism rules, the 12fps animation style, color palette, typography, camera, object movement, and character treatment. Do not water any of it down.
+
+IMPORTANT: Omni Flash only handles clips under 10 seconds. Break my script into segments of under ~9 seconds each, and give me a SEPARATE, self-contained prompt for every clip (Clip 1, Clip 2, Clip 3, ...). Each clip prompt must include the full style block above plus its own scene built from that segment of my script. Turn my key phrases into the big on-screen headline words.
+
+Give me back ONLY the finished, per-clip prompts.
+
+=== MY SCRIPT ===
+"PASTE YOUR SCRIPT HERE"
+
+=== MASTER PROMPT TEMPLATE ===
+Create a premium editorial motion graphic video with a handcrafted stop-motion collage aesthetic, assembled from printed paper, magazine cutouts, torn textures, masking tape, handwritten marker notes, rubber stamps, and halftone prints. The person's face is always a REAL PHOTOGRAPH pasted onto the collage, never illustrated.
+
+IDENTITY & REALISM (most important)
+The source clip contains one real person. Their face and head must stay PHOTOGRAPHIC and realistic at all times — treat every version of them as a real printed photograph of the actual person, cut out and pasted onto the collage. Do NOT cartoonify, illustrate, draw, paint, or turn the face into a graphic. Keep real skin texture, real facial detail, real photographic lighting. Do NOT alter ethnicity, age, facial proportions, hairstyle, skin tone, or expression. Apply the paper, torn edges, halftone, grain, and photocopy textures ONLY to the background, props, borders, and paper around the person — never flatten, posterize, or stylize the actual face. Every cutout head, Polaroid, and full-body figure uses this same real photographic face, instantly recognizable.
+
+OVERALL VISUAL LANGUAGE
+Everything exists on a layered editorial collage board. Visible: torn paper edges, masking tape, ripped notebook paper, newspaper textures, ink smudges, rough brush strokes, handwritten doodles, marker scribbles, paper labels, printed photographs, halftone dots, imperfect cut edges, subtle paper shadows, offset printing texture, grain, photocopy noise. Nothing should feel digitally clean. Everything feels physically assembled by hand.
+
+ANIMATION STYLE
+12 FPS stop-motion. No motion blur. Every movement snappy. Intentional handmade jitter. Micro vibrations on every paper layer. Frame-by-frame movement instead of smooth interpolation. Objects reposition slightly every frame. Paper shadows shift naturally. Fast object swaps, snap scaling, pop-in replacements, paper puppet movement, fast editorial rhythm.
+
+COLOR PALETTE
+Main: off-white, warm paper cream, charcoal black, electric yellow. Accents only when needed: muted red, deep teal. Yellow remains the strongest visual accent.
+
+TYPOGRAPHY
+Large editorial headlines, bold condensed typography, stamp textures, photocopied lettering, marker handwriting, paper labels, black ink typography, electric yellow emphasis words. Oversized words frequently overlap the person, appear one by one, land with impact, letters slightly misaligned. Some typography wraps around the person's body, some words become physical paper pieces, some handwritten notes circle objects. Use arrows, stars, underlines, circles, rough sketch marks and hand-drawn annotations.
+
+CAMERA
+Constant movement: fast punch-ins, crash zooms, whip pans, snap pullbacks, fast rotations. Macro closeups of paper texture, tape, printed ink, halftone dots, paper edges, cut lines, then immediately zoom back into the composition. Energetic but controlled.
+
+OBJECT MOVEMENT
+Paper cutouts slide, tape peels down, labels slap onto screen, photos stack rapidly, Polaroid frames collide, paper tears reveal next shots, cutout heads bounce, portraits rotate, paper layers shuffle, magazine pieces slide underneath each other, drop shadows visibly shift, paper puppet limbs hinge naturally.
+
+CHARACTER TREATMENT
+Alternate between live-action extracted footage, real-photo freeze-frame cutouts, floating real-photo head stickers, a full-body cutout with a real photographic head, and Polaroid portraits using the real photo. In every treatment the face stays a real photograph — only the edges, borders, and surrounding collage are paper. Never cartoonify, never lose the person's identity.
+
+SCENE-BUILDING RULES
+Break the script into scenes that flow with the narration. Open each by freezing the person into a paper cutout. Turn the key phrase of each line into an OVERSIZED headline word that slams on one at a time with heavy impact. Slap the person's face into overlapping Polaroids and orbit floating head cutouts. Cut to macro paper close-ups then snap back. Use torn-paper wipes between beats. When the line is about the old, hard, expensive way, build a chaotic desk of bills, timelines, and editor/designer labels stacking and overwhelming the paper puppet. When the line is a tip, write a giant yellow marker "PRO TIP" with circles and arrows and slam rubber-stamp checkmarks. If the script ends with a call-to-action, make the final scene a call-to-action card: clean off-white layout, giant handwritten yellow headline of the offer in the center, Polaroids of the person stacked around it, marker arrows pointing at a taped label, ending on a slow punch-in that holds before cutting to black. Turn the actual words of the script into the on-screen text. Keep electric yellow as the signature accent.`;
+
+const el = document.getElementById('prompt');
+// highlight the one part they edit
+el.innerHTML = PROMPT.replace('PASTE YOUR SCRIPT HERE', '<span class="mark">PASTE YOUR SCRIPT HERE</span>');
+
+document.getElementById('copy').addEventListener('click', function(){
+  navigator.clipboard.writeText(PROMPT).then(()=>{
+    this.textContent='Copied'; this.classList.add('done');
+    setTimeout(()=>{this.textContent='Copy prompt'; this.classList.remove('done');},1600);
+  });
+});
+</script>
+</body>
+</html>
